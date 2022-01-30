@@ -20,8 +20,6 @@ import (
 
 const APIURL string = "https://api.extract-table.com"
 
-type Table [][]string
-
 func scan(filePath string) ([]byte, error) {
 	contents, _ := os.ReadFile(filePath)
 
@@ -104,6 +102,7 @@ func main() {
 		if err != nil {
 			fmt.Printf("%v\n", err)
 		}
+
 		newFile := strings.Replace(f, filepath.Ext(f), ".csv", 1)
 		csvResults, err := toCSV(results)
 		if err != nil {
@@ -115,6 +114,7 @@ func main() {
 		if writeErr != nil {
 			fmt.Printf("File Write Error: %v\n", writeErr)
 		}
+
 		allCSV = append(allCSV, csvResults)
 		time.Sleep(2 * time.Second)
 	}
@@ -124,17 +124,3 @@ func main() {
 		fmt.Print("============================\n")
 	}
 }
-
-// client := &http.Client{
-// 	Timeout: time.Second * 10,
-// }
-
-// req, err := http.NewRequest(http.MethodPost, APIURL, data)
-// if err != nil {
-// 	return nil, err
-// }
-// req.Header.Add("Content-Type", imageMimeType)
-// req.Header.Add("Accept", "text/csv")
-
-// fmt.Printf("%v\n", req)
-// response, err := client.Do(req)

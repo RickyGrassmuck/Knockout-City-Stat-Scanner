@@ -136,6 +136,7 @@ func MessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		} else {
 			sr.ChannelID = replyChannel
 		}
+
 		_, err := s.ChannelMessageSendComplex(sr.ChannelID, &msg)
 		if err != nil {
 			fmt.Printf("Error sending message: %v", err)
